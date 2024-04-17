@@ -1,43 +1,20 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class DynamicForm extends StatefulWidget {
+  final List<InvoiceRow> dataArray;
+
+  const DynamicForm({super.key, required this.dataArray});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _DynamicFormState createState() => _DynamicFormState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final List<InvoiceRow> _dataArray = [
-    InvoiceRow(),
-    InvoiceRow(),
-    InvoiceRow()
-  ];
-
+class _DynamicFormState extends State<DynamicForm> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(height: 19),
-              const Text('Names of Programming Languages',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.teal,
-                      fontSize: 22)),
-              const SizedBox(height: 20),
-              ..._dataArray.map((row) => form(row)),
-              const SizedBox(height: 30),
-            ],
-          ),
-        ),
-      ),
+    return Column(
+      children: widget.dataArray.map((row) => form(row)).toList(),
     );
   }
 
@@ -64,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             IconButton(
-              onPressed: () => setState(() => _dataArray.remove(row)),
+              onPressed: () => setState(() => widget.dataArray.remove(row)),
               icon: const Icon(Icons.remove_circle, color: Colors.red),
             ),
             addButton(),
@@ -73,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   Widget addButton() => IconButton(
-        onPressed: () => setState(() => _dataArray.add(InvoiceRow())),
+        onPressed: () => setState(() => widget.dataArray.add(InvoiceRow())),
         icon: const Icon(Icons.add_circle, color: Colors.green),
       );
 }
@@ -83,4 +60,3 @@ class InvoiceRow {
   final TextEditingController activityController = TextEditingController();
   final TextEditingController rateController = TextEditingController();
 }
- */

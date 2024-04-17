@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dynamic_forms/home.dart';
 
+import 'dynamic_form.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomeScreen(),
+      home: DynamicForm(dataArray: [InvoiceRow()]),
     );
   }
 }
